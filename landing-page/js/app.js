@@ -2,9 +2,37 @@
 let sections = document.querySelectorAll('.sections');
 let newUl = document.querySelector('#navbar__list');
 let documentFrag = document.createDocumentFragment();
+const menuBars =document.getElementById('menu-bars');
+const overlay = document.getElementById('overlay');
+const navBar = document.querySelector('.navbar__menu')
+
+
+/*function myFunction() {
+    if (navBar.style.display === "block") {
+        navBar.style.display = "none";
+    } else {
+        navBar.style.display = "block";
+    }
+}*/
+
+function toggleNav() {
+    menuBars.classList.toggle('change1');
+    navBar.classList.toggle('change');
+    if (navBar.classList.contains('change')) {
+        navBar.classList.add('change')
+    } else {
+        navBar.classList.remove('change')
+    }
+}
+
+menuBars.addEventListener('click', toggleNav)
 
 /** forEach loop to create the Dynamic Navbar */
 sections.forEach((section) => {
+    function generator(){
+    if (n=0, n>=sections.length, n++) {
+            console.log(n);
+            }}
     let dataNew = section.getAttribute("data-nav");
     let newList = document.createElement('li');
     newList.addEventListener('click', () => {
@@ -20,30 +48,20 @@ sections.forEach((section) => {
 })
 newUl.appendChild(documentFrag)
 
-/** getting the boundries for the active section */
-sections.forEach((section)=>{
-    var rect = section.getBoundingClientRect();
-    lft=rect.left;
-    tp=rect.top;
-    wdth=rect.width;
-    hght=rect.height;
+/** getting the boundries for the active section and change the active section */
+
+window.addEventListener('scroll', () => {
+    sections.forEach((section)=>{
+         let rect = section.getBoundingClientRect();
+         if (rect.top>=0 && rect.top <= 150) {
+              sections.forEach ((remover) => {
+                 remover.classList.remove('active');
+        });
+             section.classList.add('active');
+    }
+    })
 })
 
-if (tp=>0 && hght < window.innerHeight){
-    sections.forEach((section) => {
-            section.classList.remove('your-active-class');
-        });
-        section.classList.add('your-active-class');
-}
-   
-
-/** adding an event listener when scroll to trigger the action*/
-sections.forEach((section) =>{
-    section.addEventListener('click', ()=>{
-        let actvAnchor = document.querySelectorAll('a')
-        let sectionNav = item.getAttribute('data-nav');
-        if(activeLink.textContent == sectionNav){
-            this.classList.remove('your-active-class');
-            section.classList.add('your-active-class')}
-        })
+menuBars.addEventListener('click', () => {
+    
 })

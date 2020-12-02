@@ -1,8 +1,32 @@
 
 /* ---- Base Rules ---- */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital@1&display=swap');
+
+:root {
+    --PrimaryColor: white;
+    --navColor1: #983351;
+    --navColor2: #AA5939;
+    --navColor3: #277553;
+    --navColor4: #609733;
+    --navColor5: #0b50b8;
+}
+html{
+    box-sizing: border-box;
+}
+
+@viewport {
+    zoom: 1.0;
+    width:extend-to-zoom;
+}
+
+@-ms-viewport{
+    zoom:1.0;
+    width: extend-to-zoom;
+}
+
 body {
     background: rgb(136,203,171);
-    background: linear-gradient(0deg, rgba(136,203,171,1) 0%, rgba(0,13,60,1) 100%);
+    background: linear-gradient(0deg, rgba(136,203,171,1) 0%, rgba(0,13,60,1) 100%);*/
     margin: 0;
     font-family: 'Merriweather', serif;
     color: #fff;
@@ -50,53 +74,232 @@ section {
     min-height: 80vh;
 }
 
-section .your-active-class {
-    background-color: aquamarine;
-    color: red;
+.landing__container .active {
+    color:red; 
+    border:1px solid red;
 }
-
 /* ---- Module Rules ---- */
+
+/*Mobile Compatibility*/
+
+    .overlay {
+        position: fixed;
+        z-index: 9;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.7);
+        transform: translateX(-100vw)
+    }
+
+@media screen and (max-width: 559px) {
+
+   /* .overlay {
+        position: fixed;
+        z-index: 9;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.7);
+        transform: translateX(-100vw)
+    }
+
+    .overlay-slide-right {
+        transition: all 0.4s ease-in-out;
+        transform: translateX(0);
+    }
+
+    .overlay-slide-left {
+        transition: all 0.8s ease-in-out;
+        transform: translateX(-100vw);
+    }*/
+
+    nav, .navbar__menu ul {
+       /* height: 30vh;*/
+        margin: 0;
+        padding: 0;
+    }
+
+    nav.navbar__menu{
+        width:100%;
+        height:100%;
+        position:fixed;
+        top:0;
+        right:0;
+        /*display: none;
+        flex-direction: row;
+        justify-content: stretch;
+        align-items: center;*/
+        list-style: none;
+        transition: right .8s cubic-bezier(1,0,0,1)
+    }
+
+    nav.navbar__menu li{
+        display:none;
+        flex-direction: column;
+        justify-content: stretch;
+        align-items: center;
+        transition: right .8s cubic-bezier(1,0,0,1)
+
+    }
+
+   nav.navbar__menu.change li {
+        display: flex;
+        font-size: 70%;
+    }
+
+    .navbar__menu ul li {
+        height: 20%;
+        overflow: hidden;
+        float: none;
+        width: 100%;
+        right: -559px;
+        justify-content: center;
+    }
+    
+    .navbar__menu li:hover {
+        transition: ease 0.3s all;
+        transform: scale(1.2);
+    }
+
+    .navbar__menu li::before {
+        content: "";
+        width: 3vw;
+        height:3px;
+        background-color: #fff;
+        position:absolute;
+        top:47.5%;
+        left:0;
+        opacity:0;
+    }
+    .navbar__menu li::after {
+        content: "";
+        width:100%;
+        height:2px;
+        position: absolute;
+        left: 0;
+        transform: scaleX(0)
+    }
+
+    .navbar__menu li:hover::before {
+        opacity: 1;
+        transform: translateX(1);
+    }
+
+    .menu-bars {
+        position: fixed;
+        top: 1rem;
+        right: 2rem;
+        z-index: 15;
+        display: inline;
+        cursor: pointer;
+    }
+
+    .bar1, .bar2, .bar3 {
+        width: 35px;
+        height: 2px;
+        background-color: rgb(184, 0, 0);
+        margin: 8px 0;
+        transition: 0.4s;
+    }
+
+    .change1 .bar1 {
+        transform: rotateZ(-45deg) translate(-7px, 8px);
+    }
+
+    .change1 .bar3 {
+        transform: rotateZ(45deg) translate(-7px, -8px);
+    }
+
+    .change1 .bar2 {
+        opacity:0;
+    }
+}
 
 /* Navigation Styles*/
 .navbar__menu ul {
     padding-left: 0;
+    display:flex;
     margin: 0;
     text-align: center;
-    justify-content: space-between;
+    justify-content: space-around;
+    font-family: nunito, sans-serif;
+    /*margin-left:auto;*/
+    width:100%;
+}
+
+.navbar__menu li:nth-of-type(1) {
+    background-color: var(--navColor1);
+}
+
+.navbar__menu li:nth-of-type(2) {
+    background-color: var(--navColor2);
+}
+
+.navbar__menu li:nth-of-type(3) {
+    background-color: var(--navColor3);
+}
+
+.navbar__menu li:nth-of-type(4) {
+    background-color: var(--navColor4);
+}
+
+.navbar__menu li:nth-of-type(5) {
+    background-color: var(--navColor5);
 }
 
 #navbar__list{
     float : left;
     color : blue;
-    
+    overflow: hidden;
+    justify-content: space-between;
 }
 
 .navbar__menu li {
     display: inline-block;
+    width:18.1%;
+    font-weight: bold;
+    padding: 0.8em;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    top: 30%;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-family: nunito, sans-serif;
     justify-content: space-between;
 }
 
-.navbar__menu .menu__link {
-    display: block;
-    padding: 1em;
-    font-weight: bold;
-    text-decoration: none;
-    color: #000;
+.navbar__menu li:hover {
+    transition: ease 0.3s all;
+    transform: scale(1.2);
 }
 
-.navbar__menu .menu__link:hover {
-    background: #333;
-    color: #fff;
-    transition: ease 0.3s all;
+.navbar__menu li::before {
+    content: "";
+    width: 3vw;
+    height:3px;
+    background-color: #fff;
+    position:absolute;
+    top:47.5%;
+    left:0;
+    opacity:0;
 }
+
+.navbar__menu li:hover::before {
+        opacity: 1;
+}
+
 
 /* Header Styles */
 .page__header {
-    background: rgb(255, 207, 75);
+    background: #ffffff;
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    z-index: 5;
+    z-index: 15;
 }
 
 /* Footer Styles */
@@ -193,22 +396,30 @@ section:nth-of-type(3n + 1) .landing__container::after {
 
 
 /* ---- Theme State Rules ---- */
+
+/* Active Link */
+.menu__link.active{
+    background: #333;
+    color: #fff;
+}
+
 /* Section Active Styles */
 /* Note: your-active-class class is applied through javascript. You should update the class here and in the index.html to what you set in your javascript file.  */
-section.your-active-class {
+.sections.active {
     background: rgb(0, 0, 0);
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
 }
 
-section.your-active-class .landing__container::before {
+.sections.active .landing__container::before {
     opacity: 1;
     animation: rotate 4s linear 0s infinite forwards;
 }
 
-section.your-active-class .landing__container::after {
+.sections.active .landing__container::after {
     opacity: 1;
     animation: rotate 5s linear 0s infinite forwards reverse;
 }
+
 
 /* Section Active Styles Keyframe Animations */
 @keyframes rotate {

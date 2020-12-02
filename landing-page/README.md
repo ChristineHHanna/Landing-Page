@@ -1,5 +1,11 @@
 # Landing Page Project
 
+Landing page is a page that contains **_5 sections_**. the main idea is as following:
+
+* Creating the navigation bar using JavaScript dynamically.
+* Highlighting the active section.
+* Making the website responsive & mobiles & tablets compatible.
+
 ## Table of Contents
 
 * [Instructions](#instructions)
