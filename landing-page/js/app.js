@@ -5,15 +5,8 @@ let documentFrag = document.createDocumentFragment();
 const menuBars =document.getElementById('menu-bars');
 const overlay = document.getElementById('overlay');
 const navBar = document.querySelector('.navbar__menu')
+const anchor = document.getElementsByTagName('a');
 
-
-/*function myFunction() {
-    if (navBar.style.display === "block") {
-        navBar.style.display = "none";
-    } else {
-        navBar.style.display = "block";
-    }
-}*/
 
 function toggleNav() {
     menuBars.classList.toggle('change1');
@@ -35,18 +28,24 @@ sections.forEach((section) => {
             }}
     let dataNew = section.getAttribute("data-nav");
     let newList = document.createElement('li');
-    newList.addEventListener('click', () => {
-        section.scrollIntoView({ behavior: 'smooth', block: 'center' })
-    });
     let newLnk = document.createElement('a');
     let txNd = document.createTextNode(dataNew);
     //newLnk.classList.add(dataNew);
     newLnk.appendChild(txNd);
     newList.appendChild(newLnk);
     documentFrag.appendChild(newList);
-    
+    newList.addEventListener('click', () => {
+        [...anchor].forEach((x) => {      
+        if (x.classList.contains('active')) {
+            x.classList.remove('active');
+            }})
+        newLnk.classList.add('active');
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
 })
 newUl.appendChild(documentFrag)
+
+
 
 /** getting the boundries for the active section and change the active section */
 
@@ -60,8 +59,4 @@ window.addEventListener('scroll', () => {
              section.classList.add('active');
     }
     })
-})
-
-menuBars.addEventListener('click', () => {
-    
 })
